@@ -21,7 +21,11 @@ absensi_form.addEventListener('submit', (el) => {
   absensi_data.push({
     nama: fullname,
     waktu: new Date().toLocaleTimeString(),
-    tanggal: new Date().toLocaleDateString(['ban', 'id']),
+    tanggal: new Date().toLocaleDateString(['ban', 'id'], {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }),
   });
 
   //reset input field
@@ -41,7 +45,7 @@ function render() {
   absensi_data.forEach((e, i) => {
     root.innerHTML += `<div class="card" draggable="true" ondragend="handleDelete(${i})">
                         <span>${i + 1}. ${e.nama}</span>
-                         <span> ${e.waktu} ${e.tanggal} </span>
+                         <span> ${e.waktu} &nbsp ${e.tanggal} </span>
                          </div>`;
   });
 }
